@@ -47,15 +47,14 @@ begin
           Stream.SaveToFile('spw_update.exe');
           IdHTTP1.Get('http://dww.no-ip.org/simplex/spw_mail.exe', Stream);
           Stream.SaveToFile('spw_mail.exe');
-          IdHTTP1.Get('http://dww.no-ip.org/simplex/spw.ver', Stream);
-          Stream.SaveToFile('spw.ver');
         finally
           Stream.Free;
           IdHTTP1.Disconnect;
-          ShowMessage('File download completed');
+          MessageDlg('File download completed', mtInformation, [mbOK], 0);
         end;
       except
-        ShowMessage('Unsuccessful attempt to receive files from the server');
+        MessageDlg('Unsuccessful attempt to receive files from the server',
+          mtError, [mbOK], 0);
       end;
     end
     else
